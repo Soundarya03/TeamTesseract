@@ -1,4 +1,4 @@
-# poem_generator
+# Sonnet generation through AI
 
 A simple web app built using Flutter. Part of a project that seeks to celebrate Ada Lovelace by bringing together two wildly different domains that moulded Ada's life - computer programs and poetry. This web app serves as the front-end to our effort at generating sonnets through AI. 
 
