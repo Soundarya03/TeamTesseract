@@ -113,6 +113,20 @@ class _PoemGeneratorState extends State<PoemGenerator> {
                 height: height * 0.06,
               ),
               HomeBody(),
+              SizedBox(
+                height: height * 0.06,
+              ),
+              Container(
+                width: width,
+                height: height * 0.2,
+                decoration: BoxDecoration(
+                  color: Colors.grey[800],
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(50.0),
+                      topLeft: Radius.circular(50.0)),
+                ),
+                //the team logo, deets
+              )
             ],
           ),
         ),

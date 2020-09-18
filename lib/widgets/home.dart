@@ -3,20 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget poemWidget(String input, double font) {
-  return Padding(
-    padding: const EdgeInsets.only(left: 20.0, top: 20),
-    child: Text(
-      input +
-          '\n Lorem ipsum dolor sit amet,\n consectetur adipiscing elit, \nsed do eiusmod tempor incididunt ut labore \net dolore magna aliqua. \n\nUt enim ad minim veniam, \nquis nostrud exercitation ullamco \nlaboris nisi ut aliquip ex \nea commodo consequat. \nDuis aute irure dolor in \nreprehenderit in voluptate velit \nesse cillum dolore eu fugiat \nnulla pariatur excepteur sint \noccaecat cupidatat non proident.',
-      style: TextStyle(
-        fontSize: font,
-        color: Colors.white,
-      ),
-    ),
-  );
-}
-
 class HomeBody extends StatefulWidget {
   @override
   _HomeBodyState createState() => _HomeBodyState();
@@ -26,6 +12,68 @@ class _HomeBodyState extends State<HomeBody> {
   final inputText = TextEditingController();
   String error = '';
   bool showpoemWidget = false;
+
+  Widget poemWidget(String input, double font, double sizeHeight) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0, top: 20),
+      child: Container(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(left: 25),
+                  child: FlatButton(
+                    onPressed: () {
+                      setState(() {
+                        inputText.text = '';
+                        showpoemWidget = false;
+                      });
+                    },
+                    color: Color(0xfffab1a0),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          10.0, sizeHeight * 0.035, 10, sizeHeight * 0.035),
+                      child: Text("Back Home"),
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(right: 25),
+                  child: FlatButton(
+                    onPressed: () {
+                      //download poem
+                    },
+                    color: Color(0xfffab1a0),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          10.0, sizeHeight * 0.03, 10, sizeHeight * 0.03),
+                      child: Icon(
+                        Icons.download_rounded,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              input +
+                  '\n Lorem ipsum dolor sit amet,\n consectetur adipiscing elit, \nsed do eiusmod tempor incididunt ut labore \net dolore magna aliqua. \n\nUt enim ad minim veniam, \nquis nostrud exercitation ullamco \nlaboris nisi ut aliquip ex \nea commodo consequat. \nDuis aute irure dolor in \nreprehenderit in voluptate velit \nesse cillum dolore eu fugiat \nnulla pariatur excepteur sint \noccaecat cupidatat non proident.',
+              style: TextStyle(
+                fontSize: font,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   void dispose() {
@@ -54,7 +102,7 @@ class _HomeBodyState extends State<HomeBody> {
           borderRadius: BorderRadius.all(Radius.circular(50.0)),
         ),
         child: (showpoemWidget)
-            ? poemWidget(inputText.text, font)
+            ? poemWidget(inputText.text, font, height)
             : Center(
                 child: Column(
                 children: [
