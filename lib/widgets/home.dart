@@ -1,8 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-Widget Poem(String input, double font) {
+Widget poemWidget(String input, double font) {
   return Padding(
     padding: const EdgeInsets.only(left: 20.0, top: 20),
     child: Text(
@@ -24,7 +25,7 @@ class HomeBody extends StatefulWidget {
 class _HomeBodyState extends State<HomeBody> {
   final inputText = TextEditingController();
   String error = '';
-  bool showPoem = false;
+  bool showpoemWidget = false;
 
   @override
   void dispose() {
@@ -52,12 +53,37 @@ class _HomeBodyState extends State<HomeBody> {
           //color: Colors.grey.withOpacity(0.5),
           borderRadius: BorderRadius.all(Radius.circular(50.0)),
         ),
-        child: (showPoem)
-            ? Poem(inputText.text, font)
+        child: (showpoemWidget)
+            ? poemWidget(inputText.text, font)
             : Center(
                 child: Column(
                 children: [
-                  SizedBox(height: height * 0.2),
+                  SizedBox(height: height * 0.15),
+                  Text(
+                    'Sonnets + AI',
+                    style: GoogleFonts.titilliumWeb(
+                      textStyle: TextStyle(
+                          shadows: <Shadow>[
+                            Shadow(
+                              offset: Offset(2.5, 2.5),
+                              //blurRadius: 3.0,
+                              color: Color(0xffff7979),
+                            ),
+                          ],
+                          fontWeight: FontWeight.w900,
+                          color: Colors.grey[200],
+                          fontSize: height * 0.06),
+                    ),
+                  ),
+                  Text(
+                    'Celebrating Ada Lovelace by bringing together two domains that shaped her life.\nProgramming and Poetry.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey[200],
+                        fontSize: height * 0.03),
+                  ),
+                  SizedBox(height: height * 0.1),
                   Padding(
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
                     child: TextFormField(
@@ -90,7 +116,7 @@ class _HomeBodyState extends State<HomeBody> {
                       (inputText.text != '')
                           ? setState(() {
                               error = '';
-                              showPoem = true;
+                              showpoemWidget = true;
                             })
                           : setState(() {
                               error =
@@ -106,6 +132,7 @@ class _HomeBodyState extends State<HomeBody> {
                       child: Text("Generate a sonnet!"),
                     ),
                   ),
+                  SizedBox(height: height * 0.01),
                 ],
               )));
   }
