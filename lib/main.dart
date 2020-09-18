@@ -68,16 +68,17 @@ class _PoemGeneratorState extends State<PoemGenerator> {
                                 textAlign: TextAlign.left,
                                 style: GoogleFonts.titilliumWeb(
                                   textStyle: TextStyle(
-                                      shadows: <Shadow>[
-                                        Shadow(
-                                          offset: Offset(5.0, 5.0),
-                                          //blurRadius: 3.0,
-                                          color: Colors.grey[300],
-                                        ),
-                                      ],
-                                      fontWeight: FontWeight.w900,
-                                      color: Colors.black,
-                                      fontSize: height * 0.08),
+                                    shadows: <Shadow>[
+                                      Shadow(
+                                        offset: Offset(5.0, 5.0),
+                                        //blurRadius: 3.0,
+                                        color: Colors.grey[300],
+                                      ),
+                                    ],
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.black,
+                                    fontSize: 40, //height * 0.08
+                                  ),
                                 ),
                               ),
                             ),
@@ -125,7 +126,40 @@ class _PoemGeneratorState extends State<PoemGenerator> {
                       topRight: Radius.circular(50.0),
                       topLeft: Radius.circular(50.0)),
                 ),
-                //the team logo, deets
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        'Team Tesseract',
+                        style: GoogleFonts.titilliumWeb(
+                          shadows: <Shadow>[
+                            Shadow(
+                              offset: Offset(2, 2),
+                              //blurRadius: 3.0,
+                              color: Colors.grey[200],
+                            ),
+                          ],
+                          textStyle: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: width * 0.025, //height * 0.08
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 15),
+                        child: Text(
+                          'Prateek · Muskan · Manvendra · Soundarya',
+                          style: TextStyle(color: Colors.grey[400]),
+                        ),
+                      ),
+                      Text(
+                        'We thank IEEE, and the WIE branch in particular for this opportunity.',
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                ),
               )
             ],
           ),
