@@ -17,14 +17,12 @@ def seedRoute():
     request_data = request.data
     request_data = json.loads(request_data.decode('utf-8'))
     seed = request_data['seed']
+    # THIS IS WHERE THE WORK SHOULD HAPPEN, response = MODEL_FUNCTION_HERE(seed)
     response = seed
     return " "
 
 
-# PART-2 : The variable 'response' can be used to...
-
-
-# PART-3 : Sending the ML model's output to the webpage.
+# PART-2 : Sending the ML model's output to the webpage.
 @cross_origin()
 @app.route('/output', methods=['GET'])
 def index():
