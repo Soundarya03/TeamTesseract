@@ -5,6 +5,13 @@ The project consists of two major parts.
 1. An ML model that can generate sonnets based on some input by the user (henceforth referred to as 'seed text').
 2. A simple, intuitive webpage that serves as an interface between the AI and the user.
 
+## Tech Stack Used
+
+1. Flutter for the Web
+2. Flask
+3. 
+4.
+
 ## Installation
 
 The webpage has been built using Flutter, and so to view it, you need to install it.
@@ -45,8 +52,8 @@ Once you have installed Flutter and Dart successfully, run the following command
 
 - Go to the app.py python file in lib. Click on 'Run'. This fires up the server.
 - In the terminal, enter the following command : 
-  - flutter run
-.This will open up the webpage on the browser.
+  - flutter run -
+This will open up the webpage on the browser.
 
 ## Using the webpage
 
