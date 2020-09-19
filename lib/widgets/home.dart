@@ -1,8 +1,11 @@
+import 'dart:html';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HomeBody extends StatefulWidget {
   @override
@@ -12,11 +15,8 @@ class HomeBody extends StatefulWidget {
 class _HomeBodyState extends State<HomeBody> {
   final inputText = TextEditingController();
   String error = '';
+  String poem = '';
   bool showpoemWidget = false;
-  //DateTime dateToday =
-  //   DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
-  //var now = new DateTime.now();
-  //var formatter = new DateFormat('yyyy-MM-dd');
   String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
   Widget poemWidget(String input, double font, double sizeHeight) {
@@ -96,6 +96,18 @@ class _HomeBodyState extends State<HomeBody> {
     );
   }
 
+  Future<void> writePoem() async {
+    final response = await http.get('http://127.0.0.1:5000/output');
+    //print(response);
+    final decoded = json.decode(response.body) as Map<String, dynamic>;
+
+    setState(() {
+      error = '';
+      poem = decoded['poem'];
+      showpoemWidget = true;
+    });
+  }
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -123,7 +135,7 @@ class _HomeBodyState extends State<HomeBody> {
           borderRadius: BorderRadius.all(Radius.circular(50.0)),
         ),
         child: (showpoemWidget)
-            ? poemWidget(inputText.text, font, height)
+            ? poemWidget(poem, font, height)
             : Center(
                 child: Column(
                 children: [
@@ -186,10 +198,7 @@ class _HomeBodyState extends State<HomeBody> {
                   FlatButton(
                     onPressed: () {
                       (inputText.text != '')
-                          ? setState(() {
-                              error = '';
-                              showpoemWidget = true;
-                            })
+                          ? writePoem()
                           : setState(() {
                               error =
                                   'Please enter some text. Our AI does need a teeny bit of help to begin!';
