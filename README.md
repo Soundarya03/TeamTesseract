@@ -77,6 +77,8 @@ Team members:
 - Manvendra Bansal (5th sem)
 - Prateek Pandey (5th sem)
 
+Mentor:  Dr. Annapurna P. Patil
+
 ## Attributions and assets
 
 - Binary Icon from Flaticon.com (https://www.flaticon.com/free-icon/binary_1822940?term=binary&page=1&position=3)
