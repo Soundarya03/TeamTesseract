@@ -77,4 +77,10 @@ Team members:
 - Manvendra Bansal (5th sem)
 - Prateek Pandey (5th sem)
 
+## Attributions and assets
+
+- Binary Icon from Flaticon.com (https://www.flaticon.com/free-icon/binary_1822940?term=binary&page=1&position=3)
+- Ada lovelace picture from https://www.biography.com/scholar/ada-lovelace
+- The Ada Lovelace graphic has been developed by our team itself, from the above assets.
+- Graphic tool : Canva, https://www.canva.com/
 
