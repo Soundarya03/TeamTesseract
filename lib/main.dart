@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:poem_generator/widgets/home.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 void main() => runApp(Project());
 
@@ -8,6 +9,19 @@ class Project extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      /*builder: (context, widget) => ResponsiveWrapper.builder(
+          BouncingScrollWrapper.builder(context, widget),
+          maxWidth: 1200,
+          minWidth: 450,
+          defaultScale: true,
+          breakpoints: [
+            ResponsiveBreakpoint.resize(450, name: MOBILE),
+            ResponsiveBreakpoint.autoScale(800, name: TABLET),
+            ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+            ResponsiveBreakpoint.resize(1200, name: DESKTOP),
+            //ResponsiveBreakpoint.autoScale(2460, name: "4K"),
+          ],
+          background: Container(color: Color(0xFFF5F5F5))),*/
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.montserratTextTheme(
@@ -31,6 +45,7 @@ class _PoemGeneratorState extends State<PoemGenerator> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    double font = width * 0.025;
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -56,28 +71,34 @@ class _PoemGeneratorState extends State<PoemGenerator> {
                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        flex: 2,
+                        flex: 4,
                         child: Column(
                           //mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(
-                              padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                              margin: EdgeInsets.only(bottom: 0),
+                              padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                               width: width,
-                              child: Text(
+                              child: AutoSizeText(
                                 'The Ada Lovelace Hack',
+
+                                minFontSize: 25,
+                                //maxLines: 1,
                                 textAlign: TextAlign.left,
                                 style: GoogleFonts.titilliumWeb(
                                   textStyle: TextStyle(
                                     shadows: <Shadow>[
                                       Shadow(
-                                        offset: Offset(5.0, 5.0),
+                                        offset: Offset(4.0, 4.0),
                                         //blurRadius: 3.0,
                                         color: Colors.grey[300],
                                       ),
                                     ],
+                                    letterSpacing: -1,
+                                    //height: 0.02,
                                     fontWeight: FontWeight.w900,
                                     color: Colors.black,
-                                    fontSize: 40, //height * 0.08
+                                    fontSize: font * 1.3, //width * 0.035,
                                   ),
                                 ),
                               ),
@@ -86,8 +107,9 @@ class _PoemGeneratorState extends State<PoemGenerator> {
                                 margin: EdgeInsets.all(0),
                                 width: width,
                                 padding: EdgeInsets.only(left: 15),
-                                child: Text(
+                                child: AutoSizeText(
                                   'Team Tesseract',
+                                  maxFontSize: 30,
                                   style: GoogleFonts.titilliumWeb(
                                     textStyle: TextStyle(
                                         fontWeight: FontWeight.w900,
@@ -100,10 +122,10 @@ class _PoemGeneratorState extends State<PoemGenerator> {
                       ),
                       //Container(color: Colors.blue, width: width * 0.08),
                       Expanded(
-                        flex: 1,
+                        flex: 3,
                         child: Image.asset(
                           'images/Logo.png',
-                          height: height * 0.3,
+                          height: width * 0.25,
                         ),
                       ),
                     ],
@@ -142,7 +164,8 @@ class _PoemGeneratorState extends State<PoemGenerator> {
                           textStyle: TextStyle(
                             fontWeight: FontWeight.w700,
                             color: Colors.black,
-                            fontSize: width * 0.025, //height * 0.08
+                            fontSize:
+                                (width < 725) ? height * 0.03 : font * 0.8,
                           ),
                         ),
                       ),
@@ -150,12 +173,20 @@ class _PoemGeneratorState extends State<PoemGenerator> {
                         padding: EdgeInsets.only(bottom: 15),
                         child: Text(
                           'Prateek · Muskan · Manvendra · Soundarya',
-                          style: TextStyle(color: Colors.grey[400]),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.grey[400],
+                            fontSize: height * 0.022,
+                          ),
                         ),
                       ),
                       Text(
                         'We thank IEEE, and the WIE branch in particular for this opportunity.',
-                        style: TextStyle(color: Colors.grey[600]),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: height * 0.02,
+                        ),
                       ),
                     ],
                   ),

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class HomeBody extends StatefulWidget {
   @override
@@ -12,10 +13,15 @@ class _HomeBodyState extends State<HomeBody> {
   final inputText = TextEditingController();
   String error = '';
   bool showpoemWidget = false;
+  //DateTime dateToday =
+  //   DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+  //var now = new DateTime.now();
+  //var formatter = new DateFormat('yyyy-MM-dd');
+  String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
   Widget poemWidget(String input, double font, double sizeHeight) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0, top: 20),
+      padding: const EdgeInsets.only(left: 25.0, top: 20),
       child: Container(
         child: Column(
           children: [
@@ -23,7 +29,7 @@ class _HomeBodyState extends State<HomeBody> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  margin: EdgeInsets.only(left: 25),
+                  //margin: EdgeInsets.all(left: 25),
                   child: FlatButton(
                     onPressed: () {
                       setState(() {
@@ -61,12 +67,27 @@ class _HomeBodyState extends State<HomeBody> {
                 ),
               ],
             ),
-            Text(
-              input +
-                  '\n Lorem ipsum dolor sit amet,\n consectetur adipiscing elit, \nsed do eiusmod tempor incididunt ut labore \net dolore magna aliqua. \n\nUt enim ad minim veniam, \nquis nostrud exercitation ullamco \nlaboris nisi ut aliquip ex \nea commodo consequat. \nDuis aute irure dolor in \nreprehenderit in voluptate velit \nesse cillum dolore eu fugiat \nnulla pariatur excepteur sint \noccaecat cupidatat non proident.',
-              style: TextStyle(
-                fontSize: font,
-                color: Colors.white,
+            Container(
+              padding: EdgeInsets.only(top: 25),
+              child: Text(
+                input +
+                    '\n Lorem ipsum dolor sit amet,\n consectetur adipiscing elit, \nsed do eiusmod tempor incididunt ut labore \net dolore magna aliqua. \n\nUt enim ad minim veniam, \nquis nostrud exercitation ullamco \nlaboris nisi ut aliquip ex \nea commodo consequat. \nDuis aute irure dolor in \nreprehenderit in voluptate velit \nesse cillum dolore eu fugiat \nnulla pariatur excepteur sint \noccaecat cupidatat non proident.',
+                //'\n\nPenned by an AI\n',
+                style: TextStyle(
+                  fontSize: font,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 15),
+              child: Text(
+                '- Penned by an AI\n  $formattedDate',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: font,
+                  color: Color(0xfffab1a0),
+                ),
               ),
             ),
           ],
@@ -86,7 +107,7 @@ class _HomeBodyState extends State<HomeBody> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    double font = MediaQuery.of(context).size.height * 0.03;
+    double font = height * 0.025;
 
     return Container(
         width: width * 0.95,
@@ -127,9 +148,11 @@ class _HomeBodyState extends State<HomeBody> {
                     'Celebrating Ada Lovelace by bringing together two domains that shaped her life.\nProgramming and Poetry.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey[200],
-                        fontSize: height * 0.03),
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey[200],
+                      fontSize:
+                          (width < 725) ? font : font * 1.3, //height * 0.03,
+                    ),
                   ),
                   SizedBox(height: height * 0.1),
                   Padding(
@@ -153,9 +176,10 @@ class _HomeBodyState extends State<HomeBody> {
                     padding: EdgeInsets.only(bottom: 10),
                     child: Text(
                       error,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: font * 0.9,
-                          color: Colors.red,
+                          fontSize: (width < 725) ? height * 0.02 : font * 1.1,
+                          color: Colors.red[400],
                           fontWeight: FontWeight.w600),
                     ),
                   ),
