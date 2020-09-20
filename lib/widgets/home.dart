@@ -6,6 +6,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:clipboard/clipboard.dart';
+
+/*
+  This file holds the main content of our webpage, i.e the HomeBody widget.
+  This widget displays dynamic content based on whether the user has input text and 
+  clicked on the 'Generate Sonnet!' button or not. 
+*/
 
 class HomeBody extends StatefulWidget {
   @override
@@ -14,9 +21,11 @@ class HomeBody extends StatefulWidget {
 
 class _HomeBodyState extends State<HomeBody> {
   final inputText = TextEditingController();
-  String error = '';
-  String poem = '';
-  bool showpoemWidget = false;
+  String error =
+      ''; //this is to set an error message in case the user doesn't enter any seed text
+  String poem = ''; //this stores the poem written by the AI
+  bool showpoemWidget = false; //used to control dynamic display
+  bool isCopied = false;
   String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
   Widget poemWidget(String input, double font, double sizeHeight) {
@@ -33,6 +42,7 @@ class _HomeBodyState extends State<HomeBody> {
                   child: FlatButton(
                     onPressed: () {
                       setState(() {
+                        isCopied = false;
                         inputText.text = '';
                         showpoemWidget = false;
                       });
@@ -51,6 +61,12 @@ class _HomeBodyState extends State<HomeBody> {
                   margin: EdgeInsets.only(right: 25),
                   child: FlatButton(
                     onPressed: () {
+                      FlutterClipboard.copy(input +
+                          '\n\n- Penned by an AI\n  Team Tesseract\n  ' +
+                          formattedDate);
+                      setState(() {
+                        isCopied = true;
+                      });
                       //download poem
                     },
                     color: Color(0xfffab1a0),
@@ -59,8 +75,13 @@ class _HomeBodyState extends State<HomeBody> {
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(
                           10.0, sizeHeight * 0.03, 10, sizeHeight * 0.03),
-                      child: Icon(
-                        Icons.download_rounded,
+                      child: Tooltip(
+                        message: 'Copy poem',
+                        child: isCopied
+                            ? Text('Copied!')
+                            : Icon(
+                                Icons.copy_rounded,
+                              ),
                       ),
                     ),
                   ),
@@ -123,7 +144,7 @@ class _HomeBodyState extends State<HomeBody> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
+    // to clean up the controller when the widget is disposed; good programming practice.
     inputText.dispose();
     super.dispose();
   }
@@ -144,90 +165,92 @@ class _HomeBodyState extends State<HomeBody> {
             image: AssetImage('images/AdaBG.png'),
             fit: BoxFit.cover,
           ),
-          //color: Colors.grey.withOpacity(0.5),
           borderRadius: BorderRadius.all(Radius.circular(50.0)),
         ),
-        child: (showpoemWidget)
-            ? poemWidget(poem, font, height)
-            : Center(
-                child: Column(
-                children: [
-                  SizedBox(height: height * 0.15),
-                  Text(
-                    'Sonnets + AI',
-                    style: GoogleFonts.titilliumWeb(
-                      textStyle: TextStyle(
-                          shadows: <Shadow>[
-                            Shadow(
-                              offset: Offset(2.5, 2.5),
-                              //blurRadius: 3.0,
-                              color: Color(0xffff7979),
-                            ),
-                          ],
-                          fontWeight: FontWeight.w900,
-                          color: Colors.grey[200],
-                          fontSize: height * 0.06),
-                    ),
-                  ),
-                  Text(
-                    'Celebrating Ada Lovelace by bringing together two domains that shaped her life.\nProgramming and Poetry.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.grey[200],
-                      fontSize:
-                          (width < 725) ? font : font * 1.3, //height * 0.03,
-                    ),
-                  ),
-                  SizedBox(height: height * 0.1),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                    child: TextFormField(
-                      style: TextStyle(color: Colors.white),
-                      cursorColor: Color(0xfffab1a0),
-                      controller: inputText,
-                      decoration: InputDecoration(
-                        hintText:
-                            'Enter some text here, and watch our AI model write you an original sonnet based on it!',
-                        hintStyle: TextStyle(color: Colors.grey[400]),
-                        hintMaxLines: 4,
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xfffab1a0)),
+        child:
+            (showpoemWidget) //this ternary operator serves the crucial prpose of displaying dynamic content.
+                ? poemWidget(poem, font, height)
+                : Center(
+                    child: Column(
+                    children: [
+                      SizedBox(height: height * 0.15),
+                      Text(
+                        'Sonnets + AI',
+                        style: GoogleFonts.titilliumWeb(
+                          textStyle: TextStyle(
+                              shadows: <Shadow>[
+                                Shadow(
+                                  offset: Offset(2.5, 2.5),
+                                  //blurRadius: 3.0,
+                                  color: Color(0xffff7979),
+                                ),
+                              ],
+                              fontWeight: FontWeight.w900,
+                              color: Colors.grey[200],
+                              fontSize: height * 0.06),
                         ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(bottom: 10),
-                    child: Text(
-                      error,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: (width < 725) ? height * 0.02 : font * 1.1,
-                          color: Colors.red[400],
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      (inputText.text != '')
-                          ? writePoem()
-                          : setState(() {
-                              error =
-                                  'Please enter some text. Our AI does need a teeny bit of help to begin!';
-                            });
-                    },
-                    color: Color(0xfffab1a0),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(
-                          10.0, height * 0.05, 10, height * 0.05),
-                      child: Text("Generate a sonnet!"),
-                    ),
-                  ),
-                  SizedBox(height: height * 0.01),
-                ],
-              )));
+                      Text(
+                        'Celebrating Ada Lovelace by bringing together two domains that shaped her life.\nProgramming and Poetry.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey[200],
+                          fontSize: (width < 725)
+                              ? font
+                              : font * 1.3, //height * 0.03,
+                        ),
+                      ),
+                      SizedBox(height: height * 0.1),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                        child: TextFormField(
+                          style: TextStyle(color: Colors.white),
+                          cursorColor: Color(0xfffab1a0),
+                          controller: inputText,
+                          decoration: InputDecoration(
+                            hintText:
+                                'Enter some text here, and watch our AI model write you an original sonnet based on it!',
+                            hintStyle: TextStyle(color: Colors.grey[400]),
+                            hintMaxLines: 4,
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xfffab1a0)),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text(
+                          error,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize:
+                                  (width < 725) ? height * 0.02 : font * 1.1,
+                              color: Colors.red[400],
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      FlatButton(
+                        onPressed: () {
+                          (inputText.text != '')
+                              ? writePoem()
+                              : setState(() {
+                                  error =
+                                      'Please enter some text. Our AI does need a teeny bit of help to begin!';
+                                });
+                        },
+                        color: Color(0xfffab1a0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(
+                              10.0, height * 0.05, 10, height * 0.05),
+                          child: Text("Generate a sonnet!"),
+                        ),
+                      ),
+                      SizedBox(height: height * 0.01),
+                    ],
+                  )));
   }
 }

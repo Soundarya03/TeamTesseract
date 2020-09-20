@@ -4,24 +4,12 @@ import 'package:poem_generator/widgets/home.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 void main() => runApp(Project());
+// This is the main function, the point from where the code is executed
 
 class Project extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      /*builder: (context, widget) => ResponsiveWrapper.builder(
-          BouncingScrollWrapper.builder(context, widget),
-          maxWidth: 1200,
-          minWidth: 450,
-          defaultScale: true,
-          breakpoints: [
-            ResponsiveBreakpoint.resize(450, name: MOBILE),
-            ResponsiveBreakpoint.autoScale(800, name: TABLET),
-            ResponsiveBreakpoint.autoScale(1000, name: TABLET),
-            ResponsiveBreakpoint.resize(1200, name: DESKTOP),
-            //ResponsiveBreakpoint.autoScale(2460, name: "4K"),
-          ],
-          background: Container(color: Color(0xFFF5F5F5))),*/
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.montserratTextTheme(
@@ -43,8 +31,12 @@ class PoemGenerator extends StatefulWidget {
 class _PoemGeneratorState extends State<PoemGenerator> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context)
+        .size
+        .width; //these are used to create a more responsive webpage,
+    double height = MediaQuery.of(context)
+        .size
+        .height; //so that it renders well on mobile and PC
     double font = width * 0.025;
 
     return Scaffold(
@@ -135,7 +127,7 @@ class _PoemGeneratorState extends State<PoemGenerator> {
               SizedBox(
                 height: height * 0.06,
               ),
-              HomeBody(),
+              HomeBody(), //visit the home.dart file to know more about this widget. It forms the main part of our project.
               SizedBox(
                 height: height * 0.06,
               ),
@@ -152,7 +144,7 @@ class _PoemGeneratorState extends State<PoemGenerator> {
                   child: Column(
                     children: [
                       Text(
-                        'Team Tesseract',
+                        'Team Tesseract', //Our team name!
                         style: GoogleFonts.titilliumWeb(
                           shadows: <Shadow>[
                             Shadow(
@@ -172,7 +164,7 @@ class _PoemGeneratorState extends State<PoemGenerator> {
                       Padding(
                         padding: EdgeInsets.only(bottom: 15),
                         child: Text(
-                          'Prateek · Muskan · Manvendra · Soundarya',
+                          'Prateek · Muskan · Manvendra · Soundarya', //Credits!
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.grey[400],
