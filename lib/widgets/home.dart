@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:clipboard/clipboard.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 /*
   This file holds the main content of our webpage, i.e the HomeBody widget.
@@ -26,6 +27,7 @@ class _HomeBodyState extends State<HomeBody> {
   String poem = ''; //this stores the poem written by the AI
   bool showpoemWidget = false; //used to control dynamic display
   bool isCopied = false;
+  bool isLoading = false;
   String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
   Widget poemWidget(String input, double font, double sizeHeight) {
@@ -43,6 +45,7 @@ class _HomeBodyState extends State<HomeBody> {
                     onPressed: () {
                       setState(() {
                         isCopied = false;
+                        isLoading = false;
                         inputText.text = '';
                         showpoemWidget = false;
                       });
@@ -118,6 +121,9 @@ class _HomeBodyState extends State<HomeBody> {
   }
 
   Future<void> writePoem() async {
+    setState(() {
+      isLoading = true;
+    });
     /*This function is one of the most important parts of our program, as it writes our poem; here, I've split it into 3 parts.
     Also, the two key peices of data here:-
 
@@ -246,7 +252,12 @@ class _HomeBodyState extends State<HomeBody> {
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(
                               10.0, height * 0.05, 10, height * 0.05),
-                          child: Text("Generate a sonnet!"),
+                          child: isLoading
+                              ? SpinKitWave(
+                                  color: Colors.black,
+                                  size: 20.0,
+                                )
+                              : Text("Generate a sonnet!"),
                         ),
                       ),
                       SizedBox(height: height * 0.01),
