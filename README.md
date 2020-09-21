@@ -9,7 +9,7 @@ The project consists of two major parts.
 
 1. Flutter for the Web
 2. Flask
-3. Python 
+3. Python version 3.7.3
 4. TensorFlow , matplotlib 
 
 ## Installation

@@ -10,10 +10,11 @@ app = flask.Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+
+#  loading dataset
 with open("dataset.txt", 'r', encoding='utf-8') as f:
     data_1 = f.read().lower()
 
-response = " "
 
 @cross_origin()
 @app.route("/")
@@ -26,7 +27,7 @@ def hello():
 @app.route("/predict", methods=["GET","POST"])
 def predict():
     # print(data)
-    global response
+    # accepting input seed text
     request_data = request.data
     request_data = json.loads(request_data.decode('utf-8'))
     x = request_data['text']
@@ -36,11 +37,8 @@ def predict():
     chars = sorted(list(set(data_1)))
     char_indices = dict((char, chars.index(char)) for char in chars)
     model = load_model('final_three_lstm1.h5')
-    # x = "with clytia he no longer was received than while he was a man of wealth believed balls , concerts , op'ras , tournaments , and plays "
     start_idx = np.random.randint(0, len(x) - maxlen - 1)
     new_sonnet = data_1[start_idx : start_idx +maxlen]
-    # new_sonnet = x
-    # sys.stdout.write(new_sonnet)
     print(new_sonnet)
     for i in range(600):
         # Vectorize generated text
@@ -66,8 +64,6 @@ def predict():
 
     return jsonify({'poem': x})
 
-# # start the flask app, allow remote connections
+#  start the flask app, allow remote connections
 if __name__ == '__main__':
     app.run(debug=True)
-
-# app.run(host='0.0.0.0')
