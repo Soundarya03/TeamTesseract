@@ -99,7 +99,6 @@ Mentor:  Dr. Annapurna P. Patil
 
 ## UI Of the Application
 
-<img src="images/frontend1.jpeg" height="100">
-
-![](images/frontend.jpeg)
+<img src="images/frontend1.jpeg" height="300">
+<img src="images/frontend.jpeg" height="300">
 
