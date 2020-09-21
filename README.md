@@ -94,5 +94,6 @@ Mentor:  Dr. Annapurna P. Patil
 ## UI Of the Application
 
 ![](images/frontend1.jpeg)
+
 ![](images/frontend.jpeg)
 
