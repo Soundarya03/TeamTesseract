@@ -95,7 +95,7 @@ class _HomeBodyState extends State<HomeBody> {
               padding: EdgeInsets.only(top: 25),
               child: Text(
                 input +
-                    '\n Lorem ipsum dolor sit amet,\n consectetur adipiscing elit, \nsed do eiusmod tempor incididunt ut labore \net dolore magna aliqua. \n\nUt enim ad minim veniam, \nquis nostrud exercitation ullamco \nlaboris nisi ut aliquip ex \nea commodo consequat. \nDuis aute irure dolor in \nreprehenderit in voluptate velit \nesse cillum dolore eu fugiat \nnulla pariatur excepteur sint \noccaecat cupidatat non proident.',
+                    '\n',
                 //'\n\nPenned by an AI\n',
                 style: TextStyle(
                   fontSize: font,
