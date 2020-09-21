@@ -91,6 +91,10 @@ Mentor:  Dr. Annapurna P. Patil
 - The Ada Lovelace graphic has been developed by our team itself, from the above assets.
 - Graphic tool : Canva, https://www.canva.com/
 
+## Important Links
+
+- For Presentation Link : [click here](https://docs.google.com/presentation/d/18va9S7_D4KlYw5RN6RAyV2DuMSJcuiwQdJEI9H09wOs/edit?usp=drivesdk)
+
 ## UI Of the Application
 
 ![](images/frontend1.jpeg)
