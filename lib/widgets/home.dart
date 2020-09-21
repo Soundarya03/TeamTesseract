@@ -240,11 +240,11 @@ class _HomeBodyState extends State<HomeBody> {
                       ),
                       FlatButton(
                         onPressed: () {
-                          (inputText.text.length > 40)
+                          (inputText.text.length > 50)
                               ? writePoem()
                               : setState(() {
                                   error =
-                                      'Please enter text of minimum 40 characters. Our AI does need a teeny bit of help to begin!';
+                                      'Please enter text of minimum 50 characters. Our AI does need a teeny bit of help to begin!';
                                 });
                         },
                         color: Color(0xfffab1a0),
