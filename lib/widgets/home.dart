@@ -131,7 +131,7 @@ class _HomeBodyState extends State<HomeBody> {
       AI's output : poem*/
 
     //PART-1 : Sending the user's input to the server, based on which the ML model makes the prediction.
-    final url = 'http://127.0.0.1:5000/predict';
+    final url = 'http://98e7772ca55e.ngrok.io/predict';
     print(inputText.text);
     final response1 =
         await http.post(url, body: json.encode({'text': inputText.text}));
