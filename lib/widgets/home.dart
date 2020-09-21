@@ -94,8 +94,7 @@ class _HomeBodyState extends State<HomeBody> {
             Container(
               padding: EdgeInsets.only(top: 25),
               child: Text(
-                input +
-                    '\n Lorem ipsum dolor sit amet,\n consectetur adipiscing elit, \nsed do eiusmod tempor incididunt ut labore \net dolore magna aliqua. \n\nUt enim ad minim veniam, \nquis nostrud exercitation ullamco \nlaboris nisi ut aliquip ex \nea commodo consequat. \nDuis aute irure dolor in \nreprehenderit in voluptate velit \nesse cillum dolore eu fugiat \nnulla pariatur excepteur sint \noccaecat cupidatat non proident.',
+                input,
                 //'\n\nPenned by an AI\n',
                 style: TextStyle(
                   fontSize: font,
@@ -106,7 +105,7 @@ class _HomeBodyState extends State<HomeBody> {
             Container(
               padding: EdgeInsets.only(top: 15),
               child: Text(
-                '- Penned by an AI\n  $formattedDate',
+                '\n\n- Penned by an AI\n  $formattedDate',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontSize: font,
@@ -122,6 +121,7 @@ class _HomeBodyState extends State<HomeBody> {
 
   Future<void> writePoem() async {
     setState(() {
+      error = '';
       isLoading = true;
     });
     /*This function is one of the most important parts of our program, as it writes our poem; here, I've split it into 3 parts.
@@ -144,7 +144,6 @@ class _HomeBodyState extends State<HomeBody> {
 
     //PART-3 : Performing a setState operation to trigger a rebuild of the widget tree, and display the poem
     setState(() {
-      error = '';
       poem = decoded['poem'];
       showpoemWidget = true;
     });
@@ -241,11 +240,11 @@ class _HomeBodyState extends State<HomeBody> {
                       ),
                       FlatButton(
                         onPressed: () {
-                          (inputText.text != '')
+                          (inputText.text.length > 40)
                               ? writePoem()
                               : setState(() {
                                   error =
-                                      'Please enter some text. Our AI does need a teeny bit of help to begin!';
+                                      'Please enter text of minimum 40 characters. Our AI does need a teeny bit of help to begin!';
                                 });
                         },
                         color: Color(0xfffab1a0),
