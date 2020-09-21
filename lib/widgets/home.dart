@@ -258,7 +258,7 @@ class _HomeBodyState extends State<HomeBody> {
                                   color: Colors.black,
                                   size: 20.0,
                                 )
-                              : Text("Generate a sonnet!"),
+                              : Text("Generate sonnet!"),
                         ),
                       ),
                       SizedBox(height: height * 0.01),
