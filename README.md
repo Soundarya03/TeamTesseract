@@ -1,4 +1,5 @@
 # Sonnet generation through AI
+View it at : [click here](https://soundarya03.github.io/#/)
 
 This is a project that seeks to celebrate Ada Lovelace by bringing together two wildly different domains that moulded Ada's life - computer programs and poetry. And so, generating sonnets through AI. This is also our submission for the IEEE Ada Lovelace Hack, September 2020. 
 The project consists of two major parts.
