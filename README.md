@@ -96,7 +96,7 @@ Mentor:  Dr. Annapurna P. Patil
 
 - For Presentation Link : [click here](https://docs.google.com/presentation/d/18va9S7_D4KlYw5RN6RAyV2DuMSJcuiwQdJEI9H09wOs/edit?usp=drivesdk)
 - Explanation Video Link : [click here](https://drive.google.com/file/d/1NlL0UiKMCblmAvWD4AQolPgWiUrnGzrV/view?usp=drivesdk)
-- App Demo Link : [click here](https://soundarya03.github.io/#/)
+- App Demo Link : [click here](https://megabyte98.github.io/)
 
 ## UI Of the Application
 
