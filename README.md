@@ -1,4 +1,5 @@
 # Sonnet generation through AI
+View it at : [click here](https://soundarya03.github.io/#/)
 
 This is a project that seeks to celebrate Ada Lovelace by bringing together two wildly different domains that moulded Ada's life - computer programs and poetry. And so, generating sonnets through AI. This is also our submission for the IEEE Ada Lovelace Hack, September 2020. 
 The project consists of two major parts.
@@ -9,19 +10,25 @@ The project consists of two major parts.
 
 1. Flutter for the Web
 2. Flask
-3. 
-4.
+3. Python version 3.7.3
+4. TensorFlow , matplotlib 
 
 ## Installation
 
 The webpage has been built using Flutter, and so to view it, you need to install it.
-The ML model ......
+To run the backend flask rest api on your local systems follow the following steps:
+1. clone the github repo
+2. Do pip install -r requirements.txt
+3. python app1.py
+
+your server will be started on port 5000
 
 ### Requirements
 1. Flutter
 2. Dart
 3. Text editor to view the code ( VSCode/Android Studio/Atom, etc. is preferred, though you can view it even with simple applications like Notepad. )
-4. ......
+4. Python (version : 3.7.3 preferred)
+
 
 ### Installation process
  The process has two main parts.
@@ -50,7 +57,6 @@ Once you have installed Flutter and Dart successfully, run the following command
  
 ## Viewing the webpage
 
-- Go to the app.py python file in lib. Click on 'Run'. This fires up the server.
 - In the terminal, enter the following command : 
   - flutter run -
 This will open up the webpage on the browser.
@@ -85,4 +91,15 @@ Mentor:  Dr. Annapurna P. Patil
 - Ada lovelace picture from https://www.biography.com/scholar/ada-lovelace
 - The Ada Lovelace graphic has been developed by our team itself, from the above assets.
 - Graphic tool : Canva, https://www.canva.com/
+
+## Important Links
+
+- For Presentation Link : [click here](https://docs.google.com/presentation/d/18va9S7_D4KlYw5RN6RAyV2DuMSJcuiwQdJEI9H09wOs/edit?usp=drivesdk)
+- Explanation Video Link : [click here](https://drive.google.com/file/d/1NlL0UiKMCblmAvWD4AQolPgWiUrnGzrV/view?usp=drivesdk)
+- App Demo Link : [click here](https://megabyte98.github.io/)
+
+## UI Of the Application
+
+<img src="images/frontend1.jpeg" height="300">
+<img src="images/frontend.jpeg" height="300">
 
