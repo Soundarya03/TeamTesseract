@@ -199,7 +199,7 @@ class _HomeBodyState extends State<HomeBody> {
         ),
         child:
             (showpoemWidget) //this ternary operator serves the crucial prpose of displaying dynamic content.
-                ? (isLoading) //the ! SHOULD BE REMOVED !!!
+                ? (isLoading)
                     ? LoadingWidget(
                         child: Image.memory(
                         uploadedImage,
