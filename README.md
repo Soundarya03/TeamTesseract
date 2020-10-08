@@ -1,9 +1,9 @@
 # Sonnet generation through AI
 View it at : [click here](https://soundarya03.github.io/#/)
 
-This is a project that seeks to celebrate Ada Lovelace by bringing together two wildly different domains that moulded Ada's life - computer programs and poetry. And so, generating sonnets through AI. This is also our submission for the IEEE Ada Lovelace Hack, September 2020. 
+This is a project that seeks to celebrate Ada Lovelace by bringing together two wildly different domains that moulded Ada's life - computer programs and poetry. And so, generating sonnets through AI. This is also our submission for the IEEE Ada Lovelace Hack, October 2020, and we're very glad to have progressed to the final round. The project has now been upgraded and is better than ever. 
 The project consists of two major parts.
-1. An ML model that can generate sonnets based on some input by the user (henceforth referred to as 'seed text').
+1. An ML model that can generate sonnets based on an image fed by the user.
 2. A simple, intuitive webpage that serves as an interface between the AI and the user.
 
 ## Tech Stack Used
@@ -15,15 +15,15 @@ The project consists of two major parts.
 
 ## Installation
 
-The webpage has been built using Flutter, and so to view it, you need to install it.
+The webpage has been built using Flutter.
 To run the backend flask rest api on your local systems follow the following steps:
 1. clone the github repo
 2. Do pip install -r requirements.txt
 3. python app1.py
 
-your server will be started on port 5000
+Your server will now be started on port 5000
 
-### Requirements
+### Requirements(to fully understand and view the project)
 1. Flutter
 2. Dart
 3. Text editor to view the code ( VSCode/Android Studio/Atom, etc. is preferred, though you can view it even with simple applications like Notepad. )
@@ -65,13 +65,12 @@ This will open up the webpage on the browser.
 
 The webpage has been made to be both intuitive and responsive, which means it is very simple to use and can even be viewed on different devices with different aspect ratios.
 Still, here we attach a small step-by-step use-case:-
-- Enter some seed-text in the text entry field in the middle of the page.
-- You will see that you cannot generate a sonnet without any seed-text.
-- After entering text, click on 'Generate Sonnet!'.
+- Click on the 'Generate sonnet' button to upload an image
 - You will now be shown the sonnet written by our ML model.
 - Click on the copy button at the top right. This way, you can easily copy the entire sonnet at the click of a button. 
 - To go back home, simply click on Back Home on the top left.
 
+It's as simple as that!
 
 ## Who are we?
 
@@ -89,7 +88,7 @@ Mentor:  Dr. Annapurna P. Patil
 
 - Binary Icon from Flaticon.com (https://www.flaticon.com/free-icon/binary_1822940?term=binary&page=1&position=3)
 - Ada lovelace picture from https://www.biography.com/scholar/ada-lovelace
-- The Ada Lovelace graphic has been developed by our team itself, from the above assets.
+- The Ada Lovelace graphic is original and has been developed by our team, from the above assets.
 - Graphic tool : Canva, https://www.canva.com/
 
 ## Important Links
