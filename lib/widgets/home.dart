@@ -200,7 +200,7 @@ class _HomeBodyState extends State<HomeBody> {
         ),
         child:
             (showpoemWidget) //this ternary operator serves the crucial prpose of displaying dynamic content.
-                ? (!isLoading) //the ! SHOULD BE REMOVED !!!
+                ? (isLoading)
                     ? LoadingWidget(
                         child: Image.memory(
                         uploadedImage,
@@ -240,19 +240,6 @@ class _HomeBodyState extends State<HomeBody> {
                         ),
                       ),
                       SizedBox(height: height * 0.1),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 25),
-                        child: Text(
-                          "Click on the button below, upload an image, and watch our AI write an original sonnet based on it",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xfffab1a0),
-                            fontSize: (width < 725)
-                                ? font * 0.75
-                                : font, //height * 0.03,
-                          ),
-                        ),
-                      ),
                       FlatButton(
                         onPressed: () {
                           startFilePicker(); //writePoem()
@@ -263,7 +250,28 @@ class _HomeBodyState extends State<HomeBody> {
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(
                               10.0, height * 0.05, 10, height * 0.05),
-                          child: Text("Generate sonnet!"),
+                          child: Column(
+                            children: [
+                              Text(
+                                "Generate sonnet!",
+                                style: TextStyle(
+                                  fontSize:
+                                      (width < 725) ? font * 0.8 : font * 1.1,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: Text(
+                                  "Upload an image and watch the magic",
+                                  style: TextStyle(
+                                    color: Colors.grey[700],
+                                    fontSize:
+                                        (width < 725) ? font * 0.5 : font * 0.7,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(height: height * 0.01),
