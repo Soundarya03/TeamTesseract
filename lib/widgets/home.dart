@@ -130,18 +130,21 @@ class _HomeBodyState extends State<HomeBody> {
       user input : uploadedImage
       AI's output : poem*/
 
-    // Uint8Array
-    io.File file = new io.File.fromRawPath(uploadedImage);
-    StorageReference storageReference =
-        FirebaseStorage.instance.ref().child('input/image');
-    StorageUploadTask uploadTask = storageReference.putFile(file);
+    //--------------------IMP !!  NEW-------------------------------------------------------
+    //Here, I'm uploading user's input image to the cloud firestore, and then storing DownloadURL
+    //in uploadedFileURL.
+    //io.File file = new io.File.fromRawPath(uploadedImage);
+    /*StorageReference storageReference = FirebaseStorage.instance
+        .ref()
+        .child('gs://poemgenerator-db22e.appspot.com');
+    StorageUploadTask uploadTask = storageReference.putFile(uploadedImage);
     await uploadTask.onComplete;
     print('File Uploaded');
     storageReference.getDownloadURL().then((fileURL) {
       setState(() {
         uploadedFileURL = fileURL;
       });
-    });
+    });*/
 
     //PART-1 : Sending the user's input to the server, based on which the ML model makes the prediction.
     final url = 'http://98e7772ca55e.ngrok.io/predict';
