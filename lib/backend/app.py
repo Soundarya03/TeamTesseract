@@ -17,6 +17,7 @@ def seedRoute():
     request_data = request.data
     request_data = json.loads(request_data.decode('utf-8'))
     seed = request_data['seed']
+    print("input received successfully")
     # THIS IS WHERE THE WORK SHOULD HAPPEN, response = MODEL_FUNCTION_HERE(seed)
     response = seed
     return " "

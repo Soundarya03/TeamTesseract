@@ -130,6 +130,7 @@ class _HomeBodyState extends State<HomeBody> {
       user input : uploadedImage
       AI's output : poem*/
 
+<<<<<<< HEAD
     // Uri uri = Uri.parse('http://localhost:5000/predict_image');
     // var request = http.MultipartRequest('POST', uri);
     // request.headers["image"] = "content";
@@ -137,6 +138,14 @@ class _HomeBodyState extends State<HomeBody> {
     // request.files.add(http.MultipartFile.fromBytes('image', uploadedImage,
     //     filename: "test"));
     // await request.send();
+=======
+    Uri uri = Uri.parse('http://127.0.0.1:5000/input');
+    var request = http.MultipartRequest('POST', uri);
+    request.files.add(http.MultipartFile.fromBytes('image', uploadedImage,
+        filename: "user input"));
+    var res = await request.send();
+    print(res.reasonPhrase);
+>>>>>>> 000ff679e924ead0aa0dbac95ef27d10870bff2d
 
     //PART-1 : Sending the user's input to the server, based on which the ML model makes the prediction.
     final url = 'http://127.0.0.1:5000/predict_image';
