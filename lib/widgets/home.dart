@@ -1,7 +1,7 @@
 import 'dart:html';
 import 'dart:typed_data';
 import 'dart:ui';
-import 'dart:io' as io;
+//import 'dart:io' as io;
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,7 +10,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:clipboard/clipboard.dart';
 import 'package:poem_generator/widgets/loading.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase/firebase.dart' as fb;
+import 'package:firebase/firestore.dart' as fs;
 
 /*
   This file holds the main content of our webpage, i.e the HomeBody widget.
@@ -129,18 +130,13 @@ class _HomeBodyState extends State<HomeBody> {
       user input : uploadedImage
       AI's output : poem*/
 
-    // Uint8Array
-    io.File file = new io.File.fromRawPath(uploadedImage);
-    StorageReference storageReference =
-        FirebaseStorage.instance.ref().child('input/image');
-    StorageUploadTask uploadTask = storageReference.putFile(file);
-    await uploadTask.onComplete;
-    print('File Uploaded');
-    storageReference.getDownloadURL().then((fileURL) {
-      setState(() {
-        uploadedFileURL = fileURL;
-      });
-    });
+    Uri uri = Uri.parse('');
+    var request = http.MultipartRequest('POST', uri);
+    request.headers["<custom header>"] = "content";
+    request.fields['custom test field'] = "<your text field>";
+    request.files.add(http.MultipartFile.fromBytes('image', uploadedImage,
+        filename: "user input"));
+    request.send();
 
     //PART-1 : Sending the user's input to the server, based on which the ML model makes the prediction.
     final url = 'http://127.0.0.1:5000/predict_image';
@@ -217,11 +213,13 @@ class _HomeBodyState extends State<HomeBody> {
             (showpoemWidget) //this ternary operator serves the crucial prpose of displaying dynamic content.
                 ? (isLoading)
                     ? LoadingWidget(
-                        child: Image.memory(
+                        child:
+                            Container(), /*Image.memory(
                         uploadedImage,
                         width: width * 0.3,
                         height: height * 0.3,
-                      ))
+                      )*/
+                      )
                     : (poemWidget(poem, font, height))
                 : Center(
                     child: Column(
@@ -290,6 +288,9 @@ class _HomeBodyState extends State<HomeBody> {
                         ),
                       ),
                       SizedBox(height: height * 0.01),
+                      Text(
+                        uploadedFileURL,
+                      ),
                     ],
                   )));
   }
