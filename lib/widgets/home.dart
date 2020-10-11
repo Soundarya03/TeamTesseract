@@ -131,13 +131,12 @@ class _HomeBodyState extends State<HomeBody> {
       user input : uploadedImage
       AI's output : poem*/
 
-    Uri uri = Uri.parse('');
+    Uri uri = Uri.parse('http://127.0.0.1:5000/input');
     var request = http.MultipartRequest('POST', uri);
-    request.headers["<custom header>"] = "content";
-    request.fields['custom test field'] = "<your text field>";
     request.files.add(http.MultipartFile.fromBytes('image', uploadedImage,
         filename: "user input"));
-    request.send();
+    var res = await request.send();
+    print(res.reasonPhrase);
 
     //PART-1 : Sending the user's input to the server, based on which the ML model makes the prediction.
     final url = 'http://98e7772ca55e.ngrok.io/predict';
